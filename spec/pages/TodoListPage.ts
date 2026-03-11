@@ -32,4 +32,13 @@ export class TodoListPage {
     async completeTask(taskIndex:number) {
         await this.completeTaskButton.nth(taskIndex).click();
     }
+
+    async renameTask(oldTaskName: string, newTaskName: string) {
+        await this.addItem(oldTaskName);
+        const taskItem = this.taskItem.filter({ hasText: oldTaskName });
+        await taskItem.dblclick();
+        const editInput = this.page.locator('[data-testid="text-input"]').last();
+        await editInput.fill(newTaskName);
+        await editInput.press('Enter');
+    }
 }

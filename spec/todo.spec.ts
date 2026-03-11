@@ -49,3 +49,18 @@ test('Complete task and clear completed', async ({ page }) => {
     await todoListPage.clearCompleted.click()
     await expect(todoListPage.taskItem).toHaveCount(1);
 })
+/*advance task-Implement a test that changes the name of an item
+ using the dblclick() method.*/
+
+test('Change the name of an item using the dblclick() ', async ({ page }) => {
+    const oldTaskName = 'Task1';
+    const newTaskName = 'Task2';
+    await todoListPage.renameTask(oldTaskName, newTaskName);
+    const taskName = todoListPage.taskItem.filter({hasText: newTaskName});
+    await expect(taskName).toBeVisible();
+})
+
+
+
+
+
